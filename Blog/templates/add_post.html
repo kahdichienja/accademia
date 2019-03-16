@@ -1,0 +1,121 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<!--================Header Menu Area =================-->
+{% include "blog/navbar.html" %}
+<!--================ End Header Menu Area =================-->
+<section class="banner_area">
+    <div class="container">
+        <div class="banner_inner_text">
+            <h2>Add Post</h2>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post" class="contact_us_form row" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" name="title" maxlength="100" placeholder="Tiltle" required id="id_title">
+                </div>
+                <div class="form-group col-lg-12">
+                <input type="text" hidden class="form-control" value="{{ user.username}}" name="author" maxlength="100" placeholder="Author" required id="id_author">
+                <div class="form-group col-lg-12">
+                    <textarea class="form-control" name="description" cols="40" rows="10" placeholder="Add caption.."
+                            id="id_description"></textarea>
+                </div>
+                <div class="form-group col-lg-12">
+                <label for="id_photo">Photo:</label>
+                    <input type="file" class="form-control" name="photo" accept="image/*" id="id_photo">                    </div>
+                <div class="form-group  col-lg-12">
+                    <button type="submit" value="submit" class="btn submit_btn form-control">Post</button>
+                </div>
+                {% else %}
+                    <a href="/Auth/login" class="btn submit_btn form-control">You Need To login</a>
+                {% endif %}
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="feature_item">
+                <!-- something here -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--================Footer Area =================-->
+<footer class="footr_area">
+        <div class="footer_widget_area">
+            <div class="container">
+                <div class="row footer_widget_inner">
+                    <div class="col-lg-4 col-sm-6">
+                        <aside class="f_widget f_about_widget">
+                            <img src="{% static 'img/logo.jpg' %}" style="height: 40px; width: 40px; border-radius: 50%;" alt="">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque aperiam, qu</p>
+                        </aside>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <aside class="f_widget f_insta_widget">
+                            <div class="f_title">
+                                <h3>Instagram</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-1.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-2.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-3.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-4.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-5.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-6.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-7.jpg' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/instagram/ins-8.jpg' %}" alt=""></a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <aside class="f_widget f_subs_widget">
+                            <div class="f_title">
+                                <h3>Subscribe to newsletter</h3>
+                            </div>
+                            <div class="input-group">
+                                <form action="" method="post">
+                                    <input type="text" class="form-control" placeholder="Your e-mail address here"
+                                        aria-label="Your e-mail address here">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
+                                    </span>
+                                </form>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_copyright">
+            <div class="container">
+                <div class="float-sm-left">
+                    <h5>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved
+                        <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="http://al-masi.com"
+                            target="_blank">Vendetter Boy</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </h5>
+                </div>
+                <div class="float-sm-right">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+
+{% endblock %}

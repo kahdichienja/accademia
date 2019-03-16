@@ -1,0 +1,6 @@
+autopep8==1.4.3
+Django==2.1.7
+django-crispy-forms==1.7.2
+Pillow==5.4.1
+pycodestyle==2.5.0
+pytz==2018.9

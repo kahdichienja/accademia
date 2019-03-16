@@ -1,0 +1,36 @@
+{% load static %}
+<!--================Header Menu Area =================-->
+<header class="main_menu_area">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/"><img src="{% static 'img/logo.jpg' %}"
+                style="height: 40px; width: 40px; border-radius: 50%;" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/Blog/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Portfolio</a></li>
+                <li class="nav-item dropdown submenu active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blogs
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item"><a class="nav-link" href="/Blog/allposts/">Blogs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Blog/addpost/">Add Post</a></li>
+                        {% comment %} <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li> {% endcomment %}
+                    </ul>
+                </li> 
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--================End Header Menu Area =================-->
