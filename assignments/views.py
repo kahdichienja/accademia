@@ -39,7 +39,7 @@ def submit_assignment_view(request):
             return render(request, "index.html", {'form': form})
     else:
         form = AssignmentForm()
-            return render(request, "index.html", {'form': form})
+        return render(request, "index.html", {'form': form})
 
 # # all Assignments
 # def all_assignment_view(request):
