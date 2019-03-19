@@ -25,7 +25,7 @@ SECRET_KEY = '*mf(=-_vunp0b^_q_f$7*b7**orki%e6wjcd)cmc(osr+3asa5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '192.168.43.61','169.254.116.134','127.0.0.1']
+ALLOWED_HOSTS = [ '192.168.43.61','169.254.116.134','127.0.0.1','192.168.21.215']
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built in user auth in django
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'comments',
     'assignments',
     'students',
+    'notes',
     'Blog',
 ]
 

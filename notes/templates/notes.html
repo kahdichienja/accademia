@@ -1,0 +1,84 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% block content %}
+<!--================Header Menu Area =================-->
+{% include "account/dashboardnav.html" %}
+{% if user.is_authenticated %}
+<section class="banner_area">
+    <div class="container">
+        <div class="banner_inner_text">
+            <h5>Welcome {{ user.username}} From: {{ user.university }}</h5>
+        </div>
+    </div>
+</section>
+{% for note in notes %}>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <div id="accordion" role="tablist" class="solution_collaps">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#{{note.unit_code}}" aria-expanded="false" aria-controls="{{note.unit_code}}">
+                                University: {{note.university}} <i class="minus">-</i><i class="plus">+</i>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="{{note.unit_code}}" class="collapse" role="tabpanel" aria-labelledby="headingThree"
+                        data-parent="#accordion">
+                        <div class="card-body">
+                            <h1>{{note.unit_code}} {{note.unit_name}}</h1>
+                            <p>
+                                 {{note.Comment}}<br>
+                            </p>
+                            <a href="/Notes{{note.notes_file.url}}" target="_blank">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+<section class="banner_area">
+    <div class="container">
+        <div class="banner_inner_text">
+            <h5>You Need To Log in Or Register To View This Resource</h5>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+<!--================Footer Area =================-->
+<footer class="footr_area">
+    <div class="footer_copyright">
+        <div class="container">
+            <div class="float-sm-left">
+                <h5>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved
+                    <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="http://al-masi.com"
+                        target="_blank">Vendetter Boy</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </h5>
+            </div>
+            <div class="float-sm-right">
+                <ul>
+                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================End Footer Area =================-->
+{% endblock %}

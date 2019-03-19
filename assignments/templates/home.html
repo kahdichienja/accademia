@@ -44,6 +44,23 @@
                 </tr>
                 {% endfor %}
             </table>
+            <nav aria-label="Page navigation example" class="pagination_area">
+                <ul class="pagination">
+                    {% if assignments.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ assignments.previous_page_number }}">previous</a></li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <a class="page-link" href="#">Page {{ assignments.number }} of {{ assignments.paginator.num_pages }}.</a>
+                    </li>
+
+                    {% if assignments.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ assignments.next_page_number }}">next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ assignments.paginator.num_pages }}">last &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
         <div class="col-md-6">
             <div class="feature_item" id="transparent">

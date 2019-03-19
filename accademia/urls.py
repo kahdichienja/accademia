@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name = 'dashboard.html'), name='dashboard'),
     path('Auth/', include('accounts.urls')),
+    path('Notes/', include('notes.urls')),
     path('Assignments/', include('assignments.urls')),
     path('Blog/', include('Blog.urls')),
     path('admin/', admin.site.urls),
