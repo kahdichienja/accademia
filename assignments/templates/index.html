@@ -27,16 +27,31 @@
             <form action="." method="POST" class="contact_us_form row" enctype="multipart/form-data">
                 {% csrf_token %} 
                 <div class="form-group col-lg-6">
-                    <input type="text" value="{{ user.full_name}}" name="full_name" placeholder="Full Name" class="form-control" id="full_name" required>
+                    <select name="type_of_assignment" class="form-control">
+                        <option>Type Of The Assignment</option>
+                        <option>Cat 1</option>
+                        <option>Cat 2</option>
+                        <option>Class Assignment</option>
+                        <option>Reports</option>
+                    </select>
                 </div>
                 <div class="form-group col-lg-6">
-                    <input type="text" value="{{ user.admission_number}}" name="admission_number" placeholder="Admission Number" class="form-control" id="admission_number" required>
+                    <select name="unit_name" class="form-control">
+                        <option>Unit</option>
+                        <option>COM211:Software Engineering</option>
+                    </select>
                 </div>
                 <div class="form-group col-lg-6">
-                    <input type="text" value="{{ user.university }}" name="university" placeholder="University" class="form-control" id="university" required>
+                    <input type="text" hidden value="{{ user.full_name}}" name="full_name" placeholder="Full Name" class="form-control" id="full_name" required>
                 </div>
                 <div class="form-group col-lg-6">
-                    <input type="text" value="{{ user.phone_number}}" name="phone_number" placeholder="Phone Number" class="form-control" id="phone_number" required>
+                    <input type="text" hidden value="{{ user.admission_number}}" name="admission_number" placeholder="Admission Number" class="form-control" id="admission_number" required>
+                </div>
+                <div class="form-group col-lg-6">
+                    <input type="text" hidden value="{{ user.university }}" name="university" placeholder="University" class="form-control" id="university" required>
+                </div>
+                <div class="form-group col-lg-6">
+                    <input type="text" hidden value="{{ user.phone_number}}" name="phone_number" placeholder="Phone Number" class="form-control" id="phone_number" required>
                 </div>
                 <div class="form-group col-lg-6">
                     <input type="file" name="file_name" class="form-control" id="id_file_name">
@@ -70,62 +85,15 @@
 
 {% endif %}
 <!--================Footer Area =================-->
-<footer class="footr_area">
-        <div class="footer_widget_area">
-            <div class="container">
-                <div class="row footer_widget_inner">
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_about_widget">
-                            <img src="{% static 'img/logo.jpg' %}" style="height: 40px; width: 40px; border-radius: 50%;" alt="">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque aperiam, qu</p>
-                        </aside>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_insta_widget">
-                            <div class="f_title">
-                                <h3>Instagram</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-1.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-2.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-3.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-4.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-5.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-6.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-7.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-8.jpg' %}" alt=""></a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_subs_widget">
-                            <div class="f_title">
-                                <h3>Subscribe to newsletter</h3>
-                            </div>
-                            <div class="input-group">
-                                <form action="" method="post">
-                                    <input type="text" class="form-control" placeholder="Your e-mail address here"
-                                        aria-label="Your e-mail address here">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
-                                    </span>
-                                </form>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <footer class="footr_area">
         <div class="footer_copyright">
             <div class="container">
                 <div class="float-sm-left">
                     <h5>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>document.write(new Date().getFullYear());</script> All rights reserved
                         <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="http://al-masi.com"
                             target="_blank">Vendetter Boy</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </h5>
                 </div>
                 <div class="float-sm-right">

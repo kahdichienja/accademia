@@ -19,5 +19,7 @@ class AssignmentForm(forms.ModelForm):
             'university',
             'phone_number',
             'file_name',
-        )
+            'type_of_assignment',
+            'unit_name',
+        )        
 # class PostForm(forms.Form):

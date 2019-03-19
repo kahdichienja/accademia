@@ -25,24 +25,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <td>Assignment Name</td>
+                        <td>Adm No.</td>
+                        <td>Unit</td>
                         <td>Assignment type</td>
                         <td>Date Submitted</td>
-                        <td>Is Marked</td>
-                        <td>Markes</td>
                    </tr>
                 </thead>
                 
                 {% for assignment in assignments %}
                 <tr>
-                    <td>{{ assignment.assignment_title }}</td>
+                    <td>{{ assignment.admission_number }}</td>
+                    <td>{{ assignment.unit_name }}</td>
                     <td>{{ assignment.type_of_assignment }}</td>
                     <td>{{ assignment.date|timesince }}</td>
-                    <td>False.</td>
-                    <td>00.00%</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -71,52 +69,7 @@
 
 {% endif %}
 <!--================Footer Area =================-->
-<footer class="footr_area">
-        <div class="footer_widget_area">
-            <div class="container">
-                <div class="row footer_widget_inner">
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_about_widget">
-                            <img src="{% static 'img/logo.jpg' %}" style="height: 40px; width: 40px; border-radius: 50%;" alt="">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque aperiam, qu</p>
-                        </aside>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_insta_widget">
-                            <div class="f_title">
-                                <h3>Instagram</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-1.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-2.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-3.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-4.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-5.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-6.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-7.jpg' %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static 'img/instagram/ins-8.jpg' %}" alt=""></a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <aside class="f_widget f_subs_widget">
-                            <div class="f_title">
-                                <h3>Subscribe to newsletter</h3>
-                            </div>
-                            <div class="input-group">
-                                <form action="" method="post">
-                                    <input type="text" class="form-control" placeholder="Your e-mail address here"
-                                        aria-label="Your e-mail address here">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
-                                    </span>
-                                </form>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="footr_area">       
         <div class="footer_copyright">
             <div class="container">
                 <div class="float-sm-left">

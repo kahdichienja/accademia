@@ -23,11 +23,11 @@
                 <div class="single_blog_inner">
                     <div class="s_blog_main">
                         <div class="blog_img">
-                            <img class="img-fluid" src="/Blog{{ post.photo.url }}" target="_blank"
-                                alt="{{ post.title }}">
+                            <img class="img-fluid" src="/Blog{{ instance.photo.url }}" target="_blank"
+                                alt="{{ instance.title }}">
                             <div class="blog_date">
                                 <h4>Posted On</h4>
-                                <h5>{{ post.created_at }}</h5>
+                                <h5>{{ instance.created_at|timesince }}</h5>
                             </div>
                         </div>
                         <div class="blog_text">
@@ -35,13 +35,13 @@
                                 <h4>{{ post.title }}</h4>
                             </a>
                             <div class="blog_author">
-                                <a href="#">By {{ post.author }}</a>
-                                <form method="POST" action="{% url 'delete_post' post.id %}">
+                                <a href="#">By {{ instance.author }}</a>
+                                <form method="POST" action="{% url 'delete_post' instance.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                                 </form>
                             </div>
-                            <p>{{ post.description }}</p>
+                            <p>{{ instance.description }}</p>
                         </div>
                     </div>
                     <div class="s_blog_social">
@@ -61,60 +61,81 @@
                                 <img class="rounded-circle" src="{% static 'img/blog/blog-author.png' %}" alt="">
                             </div>
                             <div class="media-body">
-                                <h4>{{ post.author }}, <span>Author</span></h4>
+                                <h4>{{ instance.author }}, <span>Author</span></h4>
                                 <p></p>
                             </div>
                         </div>
                     </div>
                     <div class="blog_comment">
-                        <h3>Comments (2)</h3>
+                        <h3>Comments ({{comments.count}})</h3>
+                        {% for comment in comments%}
                         <div class="media">
                             <img src="{% static 'img/comment/comment-1.png' %}" alt="">
                             <div class="d-flex">
-                                <h4>Sophia Willams</h4>
-                                <h5>Oct 29, 2017</h5>
+                                <h5>{{comment.user}}</h5>
+                                <h5 class="text-info">{{comment.timestamp|timesince}} ago</h5>
                             </div>
                             <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat
-                                    nec ele mentum id, suscipit id nulla. Nulla sit amet luctus doloructus. Fusce
-                                    eleifend purus vel eros</p>
-                                <a href="#">Reply</a>
+                                <p>{{comment.content}}</p>
+                                <!-- comment replies -->
+                                <hr>
+                                <a href="#" id="comment-reply-btn"> 
+                                    {% if comment.children.count > 0 %}
+                                        {{ comment.children.count}} replies | 
+                                    {%endif%}
+                                    Reply
+                                </a>
+                                <div id="comment-reply">
+                                        {% for child_comment in comment.children %}
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <h5 class="text-center">Replied by: {{child_comment.user}}</h5>
+                                                <h5 class="text-info">{{child_comment.timestamp|timesince}} ago</h5>
+                                            </div>
+                                            <div class="media-body">
+                                                <p>{{child_comment.content}}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    
+                                    <!-- end comment replies -->
+                                    <form style="height: 5%;" class="row contact_us_form" action="{% url 'post_item' instance.id %}" method="POST" id="contactForm">
+                                            {% csrf_token %}
+                                        <div class="form-group col-sm-6" style="margin-top: -15%; height: 10%;">
+                                            {{ comment_form.content }}
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            {{ comment_form.content_type }}
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            {{ comment_form.object_id }}
+                                        </div>
+                                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                        <div class="form-group col-sm-12">
+                                            <button type="submit" value="comment" class="btn btn-sm btn-info">Reply</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <div class="media">
-                            <img src="{% static 'img/comment/comment-2.png' %}" alt="">
-                            <div class="d-flex">
-                                <h4>Gabriel Smith</h4>
-                                <h5>Oct 29, 2017</h5>
-                            </div>
-                            <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat
-                                    nec ele mentum id, suscipit id nulla. Nulla sit amet luctus doloructus. Fusce
-                                    eleifend purus vel eros</p>
-                                <a href="#">Reply</a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
+
                     <div class="blog_comment_form">
                         <h3>Leave a comment</h3>
-                        <form class="row contact_us_form" action="contact_process.php" method="post" id="contactForm"
-                            novalidate="novalidate">
-                            <div class="form-group col-sm-6">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                        <form class="row contact_us_form" action="{% url 'post_item' instance.id %}" method="POST" id="contactForm">
+                                {% csrf_token %}
+                            <div class="form-group col-sm-12">
+                                {{ comment_form.content }}
                             </div>
                             <div class="form-group col-sm-12">
-                                <input type="text" class="form-control" id="subject" name="subject"
-                                    placeholder="Subject">
+                                {{ comment_form.content_type }}
                             </div>
                             <div class="form-group col-sm-12">
-                                <textarea class="form-control" name="message" id="message" rows="1"
-                                    placeholder="Message"></textarea>
+                                {{ comment_form.object_id }}
                             </div>
                             <div class="form-group col-sm-12">
-                                <button type="submit" value="submit" class="btn submit_btn form-control">Send</button>
+                                <button type="submit" value="comment" class="btn submit_btn form-control">comment</button>
                             </div>
                         </form>
                     </div>
@@ -280,6 +301,6 @@
                 </div>
             </div>
         </div>
-    </footer>
+</footer>
     <!--================End Footer Area =================-->
 {% endblock %}
