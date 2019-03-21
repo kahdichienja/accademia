@@ -25,5 +25,6 @@ urlpatterns = [
     path('Notes/', include('notes.urls')),
     path('Assignments/', include('assignments.urls')),
     path('Blog/', include('Blog.urls')),
+    path('Api/posts/', include('Blog.api.urls')),
     path('admin/', admin.site.urls),
 ]
